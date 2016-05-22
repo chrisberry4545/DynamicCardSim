@@ -89,8 +89,8 @@ new Card(83,'Fairy Energy','Common','')
 ];
 
 var CARDS_IN_RARITY: CardsInRarity[] = [
-    { rarity: 'B', number: 1 },
-    { rarity: 'C', number: 5 }
+    { rarity: 'Common', number: 1 },
+    { rarity: 'Uncommon', number: 5 }
 ];
 
 export var GENERATIONS: CardSet = {

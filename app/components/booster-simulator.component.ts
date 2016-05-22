@@ -4,6 +4,7 @@ import {CardCollection} from '../models/card-collection';
 
 import { CardCollectionComponent } from '../components/card-collection.component';
 import { SetSelectorComponent } from '../components/set-selector.component';
+import { InputComponent } from '../components/input.component';
 
 import { CardsService } from '../services/cards.service';
 
@@ -13,14 +14,18 @@ import { CardsService } from '../services/cards.service';
         <div class="booster-simulator">
             <h1 class="booster-simulator__title">{{title}}</h1>
 
-            <set-selector [gameName]="gameName" [currentSetChange]="setChanged(newSet)"></set-selector>
+            <set-selector *ngIf="setNames" [setNames]="setNames" (currentSetChange)="setChanged($event)"></set-selector>
+
+
+            {{value}}
+            <input-component [label]="'Test input'" [startingValue]="value" ></input-component>
 
             <card-collection [cardCollection]="cardCollection"></card-collection>
 
             <button class="booster-simulator__button" (click)="getCards()">New set</button>
         </div>
         `,
-    directives: [CardCollectionComponent, SetSelectorComponent],
+    directives: [CardCollectionComponent, SetSelectorComponent, InputComponent],
     providers: [CardsService],
     styles: [`
 
@@ -46,6 +51,10 @@ export class BoosterSimulatorComponent {
   @Input()
   gameName: string;
 
+  setNames: string[];
+
+  value: string;
+
   constructor(private cardsService: CardsService) { }
 
   cardCollection: CardCollection = {
@@ -55,14 +64,21 @@ export class BoosterSimulatorComponent {
   }
 
   setChanged(newSet: string) {
-      console.log('new set!' + newSet);
+      this.getCards(newSet);
   }
 
-  getCards() {
-    this.cardsService.openBooster('Fates Collide', this.gameName).then(cards => this.cardCollection.cards = cards);
+  getCards(setName: string) {
+    this.cardsService.openBooster(setName, this.gameName).then(cards => this.cardCollection.cards = cards);
+  }
+
+  setUpSetNames() {
+      var self = this;
+       this.cardsService.getSetNamesInGame(this.gameName).then(function(setNames) {
+          self.setNames = setNames;
+      });
   }
 
   ngOnInit() {
-      this.getCards();
+      this.setUpSetNames();
   }
 }
