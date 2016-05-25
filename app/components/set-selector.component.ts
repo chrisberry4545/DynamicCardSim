@@ -3,7 +3,7 @@ import {Component, Input, Output, EventEmitter} from '@angular/core';
 @Component({
     selector: 'set-selector',
     template: `
-        <div class="set-selector">
+        <div class="c-set-selector c-card">
             Set Selector -
             <select [(ngModel)]="selectedSet" (ngModelChange)="selectChanged()">
                 <option *ngFor="let set of setNames" value="{{set}}">
@@ -14,7 +14,9 @@ import {Component, Input, Output, EventEmitter} from '@angular/core';
         </div>
         `,
     styles: [`
+        .c-set-selector {
 
+        }
     `]
 })
 

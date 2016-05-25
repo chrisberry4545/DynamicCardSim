@@ -7,8 +7,8 @@ import { CardDetailComponent } from '../components/card-detail.component';
 @Component({
     selector: 'card-collection',
     template: `
-        <div class="card-collection" *ngIf="cardCollection">
-            <div class="card-collection__card" *ngFor="let card of cardCollection.cards">
+        <div class="c-card-collection o-vertical-spacing c-card " *ngIf="cardCollection">
+            <div class="c-card-collection__card" *ngFor="let card of cardCollection.cards">
                 <card-detail [card]="card"></card-detail>
             </div>
         </div>
@@ -16,11 +16,11 @@ import { CardDetailComponent } from '../components/card-detail.component';
 
     styles: [`
 
-        .card-collection {
+        .c-card-collection {
             text-align: center;
         }
 
-            .card-collection__card {
+            .c-card-collection__card {
                 display: inline-block;
             }
 

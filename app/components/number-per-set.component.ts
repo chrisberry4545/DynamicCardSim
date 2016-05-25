@@ -5,12 +5,12 @@ import { NumberPerSet } from '../models/number-per-set';
 @Component({
     selector: 'number-per-set',
     template: `
-        <div class="number-per-set">
+        <div class="c-number-per-set o-vertical-spacing c-card">
 
-            <div *ngFor="let numInSet of numbersPerSet">
+            <div *ngFor="let numInSet of numbersPerSet" class="c-number-per-set__element">
 
-                <label class="number-per-set__label" [attr.for]="numInSet.setName">{{numInSet.setName}}</label>
-                <input class="number-per-set__input" [attr.id]="numInSet.setName" type="number" [(ngModel)]="numInSet.number" (ngModelChange)="modelChanged()"/>
+                <label class="c-number-per-set__label" [attr.for]="numInSet.setName">{{numInSet.setName}}</label>
+                <input class="c-number-per-set__input" [attr.id]="numInSet.setName" type="number" [(ngModel)]="numInSet.number" (ngModelChange)="modelChanged()"/>
 
             </div>
 
@@ -19,16 +19,26 @@ import { NumberPerSet } from '../models/number-per-set';
 
     styles: [`
 
-        .number-per-set {
+        .c-number-per-set {
             text-align: center;
         }
 
-            .number-per-set__label {
-
+            .c-number-per-set__element {
+                margin-bottom: 20px;
             }
 
-            .number-per-set__input {
-                
+            .c-number-per-set__label {
+                margin-right: 10px;
+                display: inline-block;
+                width: 110px;
+                font-size: 16px;
+            }
+
+            .c-number-per-set__input {
+                text-align: center;
+                border-radius: 3px;
+                padding: 4px;
+                font-size: 16px;
             }
 
     `]

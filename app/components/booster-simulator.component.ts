@@ -11,39 +11,40 @@ import { CardsService } from '../services/cards.service';
 @Component({
     selector: 'booster-simulator',
     template: `
-        <div class="booster-simulator">
-            <h1 class="booster-simulator__title">{{title}}</h1>
+        <div class="c-booster-simulator">
 
             <number-per-set [numbersPerSet]="numbersPerSet" (numbersPerSetChanged)="numbersPerSetChanged($event)"></number-per-set>
 
             <card-collection [cardCollection]="cardCollection"></card-collection>
 
-            <button class="booster-simulator__button" (click)="getCards()">New set</button>
+            <button class="c-booster-simulator__button" (click)="getCards()">Open boosters</button>
         </div>
         `,
     directives: [CardCollectionComponent, NumberPerSetComponent],
     providers: [CardsService],
     styles: [`
 
-        .booster-simulator {
+        .c-booster-simulator {
             margin-bottom: 200px;
         }
 
-            .booster-simulator__button {
-                width: 200px;
-                height: 100px;
+            .c-booster-simulator__button {
+                width: 150px;
+                height: 50px;
                 position: fixed;
                 bottom: 30px;
-                right: 50%;
-                transform: translateX(-50%);
+                right: 0;
+                margin-right: 20px;
+                background: #006A65;
+                color: white;
+                font-size: 16px;
+                box-shadow: 2px 4px 3px 1px rgba(0,0,0,.2),0 2px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);
             }
 
     `]
 })
 
 export class BoosterSimulatorComponent {
-  title = 'Booster simulator';
-
   @Input()
   gameName: string;
 

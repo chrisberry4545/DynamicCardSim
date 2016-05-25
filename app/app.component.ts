@@ -10,8 +10,7 @@ import { NavBarComponent } from './components/nav-bar.component';
     selector: 'my-app',
     template: `
         <div>
-            <nav-bar></nav-bar>
-            <h1>{{title}}</h1>
+            <nav-bar [appTitle]="title"></nav-bar>
 
             <booster-simulator [gameName]="title"></booster-simulator>
         </div>

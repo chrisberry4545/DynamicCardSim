@@ -4,29 +4,31 @@ import { Card } from '../models/card';
 @Component({
     selector: 'card-detail',
     template: `
-        <div class="card-detail" *ngIf="card">
-            <span *ngIf="card.image == ''">{{card.name}}</span>
-            <img class="card-detail__image" src="{{card.image}}" />
+        <div class="c-card-detail" *ngIf="card">
+            <span *ngIf="c-card.image == ''">{{card.name}}</span>
+            <img class="c-card-detail__image" src="{{card.image}}" />
         </div>
     `,
     styles: [`
 
-        .card-detail {
+        .c-card-detail {
+            cursor: pointer;
         }
 
-            .card-detail__image {
+            .c-card-detail__image {
                 width: 250px;
-                transition: all 0.2s ease;
+                transform: scale(1,1);
+                transition: all 0.5s ease;
             }
 
-                .card-detail__image:hover {
-                    animation: up-bump 0.2s ease;
+                .c-card-detail__image:hover {
+                    animation: up-bump 0.5s ease;
                 }
 
             @keyframes up-bump {
-              0% { transform: translateY(0); }
-              50% { transform: translateY(-15px); }
-              100% { transform: translateY(0); }
+              0% { transform: scale(1, 1); }
+              50% { transform: scale(1.1, 1.1); box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12); }
+              100% { transform: scale(1); }
             }
 
     `]

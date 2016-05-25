@@ -10,8 +10,7 @@ import { CardsService } from '../services/cards.service';
 @Component({
     selector: 'set-browser',
     template: `
-        <div class="set-browser">
-            <h1 class="booster-simulator__title">{{title}}</h1>
+        <div class="c-set-browser">
 
             <set-selector *ngIf="setNames" [setNames]="setNames" (currentSetChange)="setChanged($event)"></set-selector>
 
@@ -21,13 +20,13 @@ import { CardsService } from '../services/cards.service';
     directives: [CardCollectionComponent, SetSelectorComponent],
     providers: [CardsService],
     styles: [`
+        .c-set-browser {
 
+        }
     `]
 })
 
 export class SetBrowserComponent {
-  title = 'Set browser';
-
   @Input()
   gameName: string;
 
