@@ -5,12 +5,12 @@ import { NumberPerSet } from '../models/number-per-set';
 @Component({
     selector: 'number-per-set',
     template: `
-        <div>
+        <div class="number-per-set">
 
             <div *ngFor="let numInSet of numbersPerSet">
 
-                <label>{{numInSet.setName}}</label>
-                <input type="number" [(ngModel)]="numInSet.number" (ngModelChange)="modelChanged()"/>
+                <label class="number-per-set__label" [attr.for]="numInSet.setName">{{numInSet.setName}}</label>
+                <input class="number-per-set__input" [attr.id]="numInSet.setName" type="number" [(ngModel)]="numInSet.number" (ngModelChange)="modelChanged()"/>
 
             </div>
 
@@ -19,6 +19,17 @@ import { NumberPerSet } from '../models/number-per-set';
 
     styles: [`
 
+        .number-per-set {
+            text-align: center;
+        }
+
+            .number-per-set__label {
+
+            }
+
+            .number-per-set__input {
+                
+            }
 
     `]
 })

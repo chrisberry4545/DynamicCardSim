@@ -69,8 +69,8 @@ export class BoosterSimulatorComponent {
       var self = this;
        this.cardsService.getSetNamesInGame(this.gameName).then(function(setNames) {
 
-          setNames.forEach(function(name) {
-              self.numbersPerSet.push({setName: name, number: 0});
+          setNames.forEach(function(name, index) {
+              self.numbersPerSet.push({setName: name, number: index == 0 ? 3 : 0});
           });
 
       });
