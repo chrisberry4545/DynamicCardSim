@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 
 import { BoosterSimulatorComponent } from './components/booster-simulator.component';
+import { SetBrowserComponent } from './components/set-browser.component';
 
 @Component({
     selector: 'my-app',
@@ -11,7 +12,9 @@ import { BoosterSimulatorComponent } from './components/booster-simulator.compon
             <booster-simulator [gameName]="title"></booster-simulator>
         </div>
         `,
-    directives: [BoosterSimulatorComponent]
+
+        // <set-browser [gameName]="title" ></set-browser>
+    directives: [BoosterSimulatorComponent, SetBrowserComponent]
 })
 export class AppComponent {
   title = gameName;

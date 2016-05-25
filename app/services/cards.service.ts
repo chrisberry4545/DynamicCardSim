@@ -10,6 +10,7 @@ var allCardSets = [
 import { Card } from '../models/card';
 import { Game } from '../models/game';
 import { CardsInRarity } from '../models/cards-in-rarity';
+import { NumberPerSet } from '../models/number-per-set';
 
 @Injectable()
 export class CardsService {
@@ -102,20 +103,28 @@ export class CardsService {
 
   }
 
-  openBooster(setName: string, gameName: string) {
+  openBooster(numbersPerSet: NumberPerSet[], gameName: string) {
 
       var self = this;
 
       return this.getCardsForGame(gameName).then(function(gameSet) {
 
-          var cardSet = self.getCardSet(setName, gameSet);
-
           var cardsInBooster: Card[] = [];
 
-          cardSet.cardsInRarity.forEach(function(cardsInRarity : CardsInRarity) {
-              var allCardsOfRarityInSet = self.getCardsOfRarity(cardSet.cards, cardsInRarity.rarity);
-              cardsInBooster.push.apply(cardsInBooster,
-                  self.getXRandomCardsFromCardArray(cardsInRarity.number, allCardsOfRarityInSet));
+          numbersPerSet.forEach(function(numPerSet) {
+
+              var cardSet = self.getCardSet(numPerSet.setName, gameSet);
+
+              for(var i = 0; i < numPerSet.number; i++) {
+                  
+                  cardSet.cardsInRarity.forEach(function(cardsInRarity : CardsInRarity) {
+                      var allCardsOfRarityInSet = self.getCardsOfRarity(cardSet.cards, cardsInRarity.rarity);
+                      cardsInBooster.push.apply(cardsInBooster,
+                          self.getXRandomCardsFromCardArray(cardsInRarity.number, allCardsOfRarityInSet));
+                  });
+
+              }
+
           });
 
           return cardsInBooster;

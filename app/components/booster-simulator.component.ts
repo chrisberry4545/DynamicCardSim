@@ -1,10 +1,10 @@
 import {Component, Input} from '@angular/core';
 
 import {CardCollection} from '../models/card-collection';
+import {NumberPerSet} from '../models/number-per-set';
 
 import { CardCollectionComponent } from '../components/card-collection.component';
-import { SetSelectorComponent } from '../components/set-selector.component';
-import { InputComponent } from '../components/input.component';
+import { NumberPerSetComponent } from '../components/number-per-set.component';
 
 import { CardsService } from '../services/cards.service';
 
@@ -14,18 +14,14 @@ import { CardsService } from '../services/cards.service';
         <div class="booster-simulator">
             <h1 class="booster-simulator__title">{{title}}</h1>
 
-            <set-selector *ngIf="setNames" [setNames]="setNames" (currentSetChange)="setChanged($event)"></set-selector>
-
-
-            {{value}}
-            <input-component [label]="'Test input'" [startingValue]="value" ></input-component>
+            <number-per-set [numbersPerSet]="numbersPerSet" (numbersPerSetChanged)="numbersPerSetChanged($event)"></number-per-set>
 
             <card-collection [cardCollection]="cardCollection"></card-collection>
 
             <button class="booster-simulator__button" (click)="getCards()">New set</button>
         </div>
         `,
-    directives: [CardCollectionComponent, SetSelectorComponent, InputComponent],
+    directives: [CardCollectionComponent, NumberPerSetComponent],
     providers: [CardsService],
     styles: [`
 
@@ -51,9 +47,7 @@ export class BoosterSimulatorComponent {
   @Input()
   gameName: string;
 
-  setNames: string[];
-
-  value: string;
+  numbersPerSet: NumberPerSet[];
 
   constructor(private cardsService: CardsService) { }
 
@@ -63,22 +57,27 @@ export class BoosterSimulatorComponent {
       cards: []
   }
 
-  setChanged(newSet: string) {
-      this.getCards(newSet);
+  numbersPerSetChanged(numbersPerSet: NumberPerSet[]) {
+      this.numbersPerSet = numbersPerSet;
   }
 
-  getCards(setName: string) {
-    this.cardsService.openBooster(setName, this.gameName).then(cards => this.cardCollection.cards = cards);
+  getCards() {
+    this.cardsService.openBooster(this.numbersPerSet, this.gameName).then(cards => this.cardCollection.cards = cards);
   }
 
-  setUpSetNames() {
+  initNumbersPerSet() {
       var self = this;
        this.cardsService.getSetNamesInGame(this.gameName).then(function(setNames) {
-          self.setNames = setNames;
+
+          setNames.forEach(function(name) {
+              self.numbersPerSet.push({setName: name, number: 0});
+          });
+
       });
   }
 
   ngOnInit() {
-      this.setUpSetNames();
+      this.numbersPerSet = [];
+      this.initNumbersPerSet();
   }
 }

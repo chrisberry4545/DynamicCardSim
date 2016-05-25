@@ -17,7 +17,7 @@ import { CardDetailComponent } from '../components/card-detail.component';
     styles: [`
 
         .card-collection {
-
+            text-align: center;
         }
 
             .card-collection__card {
