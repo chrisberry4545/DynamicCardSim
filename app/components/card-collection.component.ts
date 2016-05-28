@@ -1,5 +1,6 @@
-import { Component, Input} from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
+import { Card } from '../models/card';
 import { CardCollection } from '../models/card-collection';
 
 import { CardDetailComponent } from '../components/card-detail.component';
@@ -8,8 +9,12 @@ import { CardDetailComponent } from '../components/card-detail.component';
     selector: 'card-collection',
     template: `
         <div class="c-card-collection o-vertical-spacing c-card " *ngIf="cardCollection">
+            <h3 class="c-card-collection__title">
+                {{cardCollection.name}}
+            </h3>
+
             <div class="c-card-collection__card" *ngFor="let card of cardCollection.cards">
-                <card-detail [card]="card"></card-detail>
+                <card-detail (click)="cardClickedFunc(card)" [card]="card"></card-detail>
             </div>
         </div>
     `,
@@ -19,6 +24,10 @@ import { CardDetailComponent } from '../components/card-detail.component';
         .c-card-collection {
             text-align: center;
         }
+
+            .c-card-collection__title {
+
+            }
 
             .c-card-collection__card {
                 display: inline-block;
@@ -32,4 +41,11 @@ import { CardDetailComponent } from '../components/card-detail.component';
 export class CardCollectionComponent {
     @Input()
     cardCollection: CardCollection;
+
+    @Output()
+    cardClicked: EventEmitter<Card> = new EventEmitter();
+
+    cardClickedFunc(card: Card) {
+        this.cardClicked.emit(card);
+    }
 }

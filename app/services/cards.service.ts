@@ -116,7 +116,7 @@ export class CardsService {
               var cardSet = self.getCardSet(numPerSet.setName, gameSet);
 
               for(var i = 0; i < numPerSet.number; i++) {
-                  
+
                   cardSet.cardsInRarity.forEach(function(cardsInRarity : CardsInRarity) {
                       var allCardsOfRarityInSet = self.getCardsOfRarity(cardSet.cards, cardsInRarity.rarity);
                       cardsInBooster.push.apply(cardsInBooster,
@@ -131,6 +131,12 @@ export class CardsService {
 
       });
 
+  }
+
+
+  moveFromArray1ToArray2(array1: Card[], array2: Card[], card: Card) {
+      var cardFromArray1 = array1.splice(array1.indexOf(card), 1)[0];
+      array2.unshift(card);
   }
 
 }
