@@ -15,6 +15,10 @@ import { NumberPerSet } from '../models/number-per-set';
 @Injectable()
 export class CardsService {
 
+    getGameName() {
+        return 'Pokemon';
+    }
+
     getSetNamesInGame(gameName: string) {
         return this.getCardsForGame(gameName).then(function(game: Game) {
             return game.cardSets.map(function(cardSet) {

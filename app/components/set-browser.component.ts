@@ -60,6 +60,7 @@ export class SetBrowserComponent {
       });
   }
   ngOnInit() {
+      this.gameName = this.cardsService.getGameName();
       this.setUpSetNames();
   }
 }

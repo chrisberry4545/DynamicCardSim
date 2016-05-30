@@ -17,7 +17,7 @@ import { CardsService } from '../services/cards.service';
 
             <card-collection [cardCollection]="cardCollection"></card-collection>
 
-            <button class="c-booster-simulator__button" (click)="getCards()">Open boosters</button>
+            <button class="c-button c-button--floating" (click)="getCards()">Open boosters</button>
         </div>
         `,
     directives: [CardCollectionComponent, NumberPerSetComponent],
@@ -27,19 +27,6 @@ import { CardsService } from '../services/cards.service';
         .c-booster-simulator {
             margin-bottom: 200px;
         }
-
-            .c-booster-simulator__button {
-                width: 150px;
-                height: 50px;
-                position: fixed;
-                bottom: 30px;
-                right: 0;
-                margin-right: 20px;
-                background: #006A65;
-                color: white;
-                font-size: 16px;
-                box-shadow: 2px 4px 3px 1px rgba(0,0,0,.2),0 2px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);
-            }
 
     `]
 })
@@ -78,6 +65,7 @@ export class BoosterSimulatorComponent {
   }
 
   ngOnInit() {
+      this.gameName = this.cardsService.getGameName();
       this.numbersPerSet = [];
       this.initNumbersPerSet();
   }

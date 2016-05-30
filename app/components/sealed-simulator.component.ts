@@ -20,7 +20,7 @@ import { CardsService } from '../services/cards.service';
 
             <card-collection [cardCollection]="selectedCards" (cardClicked)="removeCardFromSelected($event)" ></card-collection>
 
-            <button class="c-booster-simulator__button" (click)="getCards()">Open boosters</button>
+            <button class="c-button c-button--floating" (click)="getCards()">Open boosters</button>
         </div>
         `,
     directives: [CardCollectionComponent, NumberPerSetComponent],
@@ -79,6 +79,7 @@ export class SealedSimulatorComponent {
   }
 
   ngOnInit() {
+      this.gameName = this.cardsService.getGameName();
       this.numbersPerSet = [];
       this.initNumbersPerSet();
   }
