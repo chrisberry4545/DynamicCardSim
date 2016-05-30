@@ -35,10 +35,6 @@ import { NumberPerSet } from '../models/number-per-set';
             }
 
             .c-number-per-set__input {
-                text-align: center;
-                border-radius: 3px;
-                padding: 4px;
-                font-size: 16px;
             }
 
     `]

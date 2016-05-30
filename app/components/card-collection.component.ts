@@ -31,6 +31,7 @@ import { CardDetailComponent } from '../components/card-detail.component';
 
             .c-card-collection__card {
                 display: inline-block;
+                margin: 5px;
             }
 
     `],

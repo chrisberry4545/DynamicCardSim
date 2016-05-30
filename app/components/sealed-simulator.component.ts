@@ -72,7 +72,7 @@ export class SealedSimulatorComponent {
        this.cardsService.getSetNamesInGame(this.gameName).then(function(setNames) {
 
           setNames.forEach(function(name, index) {
-              self.numbersPerSet.push({setName: name, number: index == 0 ? 3 : 0});
+              self.numbersPerSet.push({setName: name, number: index == 0 ? 6 : 0});
           });
 
       });

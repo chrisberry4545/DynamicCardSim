@@ -67,6 +67,10 @@ import { NavBarComponent } from './components/nav-bar.component';
 
                 }
 
+                .router-link-active {
+                    color: grey;
+                }
+
     `],
     directives: [SealedSimulatorComponent, BoosterSimulatorComponent, SetBrowserComponent, ROUTER_DIRECTIVES ]
 })

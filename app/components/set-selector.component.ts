@@ -3,9 +3,8 @@ import {Component, Input, Output, EventEmitter} from '@angular/core';
 @Component({
     selector: 'set-selector',
     template: `
-        <div class="c-set-selector c-card">
-            Set Selector -
-            <select [(ngModel)]="selectedSet" (ngModelChange)="selectChanged()">
+        <div class="c-set-selector c-card o-vertical-spacing">
+            <select [(ngModel)]="selectedSet" (ngModelChange)="selectChanged()" class="c-set-selector__select">
                 <option *ngFor="let set of setNames" value="{{set}}">
                     {{set}}
                 </option>
@@ -15,8 +14,12 @@ import {Component, Input, Output, EventEmitter} from '@angular/core';
         `,
     styles: [`
         .c-set-selector {
-
+            text-align: center;
         }
+
+            .c-set-selector__select {
+
+            }
     `]
 })
 

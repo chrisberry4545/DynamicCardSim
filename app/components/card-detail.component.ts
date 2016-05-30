@@ -19,10 +19,14 @@ import { Card } from '../models/card';
                 width: 250px;
                 transform: scale(1,1);
                 transition: all 0.5s ease;
+                box-shadow 0 0 0 0 #777;
+                position: relative;
             }
 
                 .c-card-detail__image:hover {
-                    animation: up-bump 0.5s ease;
+                    transform: scale(1.1, 1.1);
+                    z-index: 1;
+                    box-shadow: 0 10px 6px -6px #777;
                 }
 
             @keyframes up-bump {
