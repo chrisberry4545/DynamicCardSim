@@ -6,4 +6,6 @@ export class CardSet {
     name: string;
     cards: Card[];
     cardsInRarity: CardsInRarity[];
+
+    processBooster: (cardsInBooster: Card[]) => Card[];
 }

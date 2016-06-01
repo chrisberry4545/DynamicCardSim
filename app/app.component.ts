@@ -5,8 +5,6 @@ import { SealedSimulatorComponent } from './components/sealed-simulator.componen
 import { BoosterSimulatorComponent } from './components/booster-simulator.component';
 import { SetBrowserComponent } from './components/set-browser.component';
 
-import { NavBarComponent } from './components/nav-bar.component';
-
 @Component({
     selector: 'my-app',
     template: `

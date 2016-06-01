@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 
 import { POKEMON_COMBINED } from '../cards/pokemon/pokemon-combined';
 import { YUGIOH_COMBINED } from '../cards/yugioh/yugioh-combined';
+import { CARD_FIGHT_COMBINED } from '../cards/card-fight/card-fight-combined';
 
 var allCardSets = [
-    POKEMON_COMBINED, YUGIOH_COMBINED
+    POKEMON_COMBINED, YUGIOH_COMBINED, CARD_FIGHT_COMBINED
 ];
 
 import { Card } from '../models/card';
@@ -16,7 +17,7 @@ import { NumberPerSet } from '../models/number-per-set';
 export class CardsService {
 
     getGameName() {
-        return 'Pokemon';
+        return 'Card Fight - Vanguard'//'Pokemon';
     }
 
     getSetNamesInGame(gameName: string) {
@@ -121,11 +122,16 @@ export class CardsService {
 
               for(var i = 0; i < numPerSet.number; i++) {
 
+                  var cardsInSingleBooster: Card[] = [];
+
                   cardSet.cardsInRarity.forEach(function(cardsInRarity : CardsInRarity) {
                       var allCardsOfRarityInSet = self.getCardsOfRarity(cardSet.cards, cardsInRarity.rarity);
-                      cardsInBooster.push.apply(cardsInBooster,
-                          self.getXRandomCardsFromCardArray(cardsInRarity.number, allCardsOfRarityInSet));
+                      var cardsOfRarityInBooster = self.getXRandomCardsFromCardArray(cardsInRarity.number, allCardsOfRarityInSet);
+
+                      cardsInSingleBooster.push.apply(cardsInSingleBooster, cardsOfRarityInBooster);
                   });
+
+                  cardsInBooster.push.apply(cardsInBooster, cardSet.processBooster(cardsInSingleBooster))
 
               }
 
